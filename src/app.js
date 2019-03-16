@@ -6,12 +6,14 @@ import thunk from "redux-thunk";
 import weatherReducer from "./reducers/forecast";
 import App from "./components/App";
 
+const middleware = [
+  applyMiddleware(thunk),
+  ...(window.__REDUX_DEVTOOLS_EXTENSION__ ? [window.__REDUX_DEVTOOLS_EXTENSION__()] : [])
+];
+
 const store = createStore(
   weatherReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  compose(...middleware)
 );
 
 const jsx = (
