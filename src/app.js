@@ -6,12 +6,11 @@ import thunk from "redux-thunk";
 import weatherReducer from "./reducers/forecast";
 import App from "./components/App";
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   weatherReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
-  )
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 const jsx = (
