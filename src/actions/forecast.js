@@ -25,7 +25,6 @@ export const startAddForecast = (cityName = "Kiev") => {
         }
       })
       .catch(error => {
-        console.log(error);
         dispatch(searchError(error.message));
       });
   };

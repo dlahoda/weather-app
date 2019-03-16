@@ -12,7 +12,6 @@ export class SearchForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.cityName);
-    console.log(this.props.searchError);
   };
 
   onSearchValueChange = e => {
