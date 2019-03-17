@@ -13,6 +13,11 @@ export const addForecast = forecast => ({
 
 export const startAddForecast = (cityName = "Kiev") => {
   return (dispatch, getState) => {
+    const cityNamesList = getState().forecast.map(forecast => forecast.name);
+    if (cityNamesList.indexOf(cityName) !== -1) {
+      return dispatch(setCityForecast(cityName));
+    }
+    
     const url = getCurrentWeatherUrl(cityName);
 
     return axios.get(url)
@@ -33,4 +38,9 @@ export const startAddForecast = (cityName = "Kiev") => {
 export const searchError = searchError => ({
   type: "SEARCH_ERROR",
   searchError
+});
+
+export const setCityForecast = cityName => ({
+  type: "SET_CITY_FORECAST",
+  cityName
 });

@@ -1,5 +1,6 @@
 const defaultState = {
   searchError: "",
+  lastSearch: "",
   forecast: []
 };
 
@@ -9,6 +10,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         searchError: "",
+        lastSearch: action.forecast.name,
         forecast: [
           ...state.forecast,
           action.forecast
@@ -18,6 +20,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         searchError: action.searchError
+      }
+    case "SET_CITY_FORECAST":
+      return {
+        ...state,
+        lastSearch: action.cityName
       }
     default:
       return state;

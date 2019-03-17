@@ -12,6 +12,7 @@ export class SearchForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state.cityName);
+    this.setState(() => ({ cityName: "" }));
   };
 
   onSearchValueChange = e => {
