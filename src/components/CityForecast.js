@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 export default class CityForecast extends React.Component {
   createWeatherConditionsBlock = () => {
     return this.props.weather.map((element, index) => (
@@ -57,8 +56,8 @@ export default class CityForecast extends React.Component {
             </tr>
           </tbody>
         </table>
-        <Link to={`/forecast/${this.props.name}`}>Forecast</Link>
+        <Link to={`/forecast/${this.props.name}`} >Forecast</Link>
       </div>
     );
-  }
-}
+  };
+};

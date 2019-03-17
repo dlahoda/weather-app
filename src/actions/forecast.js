@@ -8,15 +8,20 @@ export const getExtendedForecast = forecast => ({
 
 export const startGetExtendedForecast = (cityName = "Kiev") => {
   return (dispatch, getState) => {
-    const url = getForecastUrl(cityName);
-    
-    return axios.get(url)
-      .ther(response => {
+    const cityNamesList = getState().forecastList.map(forecast => forecast.city.name);
+
+    if (cityNamesList.indexOf(cityName) === -1) {
+      const url = getForecastUrl(cityName);
+      
+      return axios
+      .get(url)
+      .then(response => {
         const data = response.data;
         if (data) {
-          dispatch(addForecast(data));
+          dispatch(getExtendedForecast(data));
         }
       })
       .catch(error => console.log(error));
+    }
   };
 };
