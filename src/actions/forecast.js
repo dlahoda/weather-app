@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCurrentWeatherUrl } from "../api/openweathermap";
 
 const errorInterceptorInstance = axios.create();
 errorInterceptorInstance.interceptors.response.use(null, error => {
@@ -12,8 +13,7 @@ export const addForecast = forecast => ({
 
 export const startAddForecast = (cityName = "Kiev") => {
   return (dispatch, getState) => {
-    const apikey = "d67da26893b3dadf7e7984351171bdec";
-    const url = `//api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${apikey}&units=metric`;
+    const url = getCurrentWeatherUrl(cityName);
 
     return axios.get(url)
       .then(response => {
