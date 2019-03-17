@@ -23,6 +23,8 @@
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
     "dotenv": "^7.0.0",
+    "moment": "^2.24.0",
+    "moment-locales-webpack-plugin": "^1.0.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
