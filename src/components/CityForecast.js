@@ -4,7 +4,7 @@ export default class CityForecast extends React.Component {
   createWeatherConditionsBlock = () => {
     return this.props.weather.map((element, index) => (
       <div key={index} className="weather__condition">
-        <img src={`http://openweathermap.org/img/w/${element.icon}.png`} />
+        <img src={`//openweathermap.org/img/w/${element.icon}.png`} />
         <p>{element.main}</p>
       </div>
     ));
