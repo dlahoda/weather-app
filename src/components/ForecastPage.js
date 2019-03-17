@@ -1,6 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
 
-export default class ForecastPage extends React.Component {
+export class ForecastPage extends React.Component {
   render() {
     return (
       <div>
@@ -10,3 +11,9 @@ export default class ForecastPage extends React.Component {
     );
   };
 };
+
+// const mapStateToProps = state => ({
+//   extendedForecast: 
+// });
+
+export default connect()(ForecastPage);

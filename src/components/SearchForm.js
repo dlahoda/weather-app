@@ -43,7 +43,7 @@ export class SearchForm extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  searchError: state.searchError
+  searchError: state.currentWeather.searchError
 });
 
 export default connect(mapStateToProps)(SearchForm);

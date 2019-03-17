@@ -13,20 +13,21 @@ export const addForecast = forecast => ({
 
 export const startAddForecast = (cityName = "Kiev") => {
   return (dispatch, getState) => {
-    const cityNamesList = getState().forecast.map(forecast => forecast.name);
+    const cityNamesList = getState().currentWeather.currentWeatherList.map(forecast => forecast.name);
     if (cityNamesList.indexOf(cityName) !== -1) {
       return dispatch(setCityForecast(cityName));
     }
-    
+
     const url = getCurrentWeatherUrl(cityName);
 
-    return axios.get(url)
+    return axios
+      .get(url)
       .then(response => {
         const data = response.data;
         if (data) {
           dispatch(addForecast(data));
         } else {
-          console.log("data is wrong");
+          throw new Error("Received data is empty");
         }
       })
       .catch(error => {

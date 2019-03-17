@@ -15,7 +15,7 @@ class CurrentWeatherPage extends React.Component {
   };
 
   queryList = () => {
-    const forecastArray = this.props.forecast;
+    const forecastArray = this.props.currentWeatherList;
     if (forecastArray < 5) {
       return forecastArray.map(forecast => forecast.name);
     } else {
@@ -24,7 +24,7 @@ class CurrentWeatherPage extends React.Component {
   };
 
   getLastSearchForecast = () => {
-    return this.props.forecast.filter(
+    return this.props.currentWeatherList.filter(
       forecast => forecast.name === this.props.lastSearch
     )[0];
   };
@@ -34,7 +34,7 @@ class CurrentWeatherPage extends React.Component {
       <div>
         <h1>Weather App</h1>
         <SearchForm onSubmit={this.onFormSubmit} />
-        {this.props.forecast.length > 0 ? (
+        {this.props.currentWeatherList.length > 0 ? (
           <RecentSearch
             queryList={this.queryList()}
             onClick={this.onCityNameClick}
@@ -42,7 +42,7 @@ class CurrentWeatherPage extends React.Component {
         ) : (
           ""
         )}
-        {this.props.forecast.length > 0 ? (
+        {this.props.currentWeatherList.length > 0 ? (
           <CityForecast {...this.getLastSearchForecast()} />
         ) : (
           ""
@@ -53,8 +53,8 @@ class CurrentWeatherPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  lastSearch: state.lastSearch,
-  forecast: state.forecast
+  lastSearch: state.currentWeather.lastSearch,
+  currentWeatherList: state.currentWeather.currentWeatherList
 });
 
 const mapDispatchToProps = dispatch => ({

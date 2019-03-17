@@ -1,7 +1,7 @@
 const defaultState = {
   searchError: "",
   lastSearch: "",
-  forecast: []
+  currentWeatherList: []
 };
 
 export default (state = defaultState, action) => {
@@ -11,8 +11,8 @@ export default (state = defaultState, action) => {
         ...state,
         searchError: "",
         lastSearch: action.forecast.name,
-        forecast: [
-          ...state.forecast,
+        currentWeatherList: [
+          ...state.currentWeatherList,
           action.forecast
         ]
       };
