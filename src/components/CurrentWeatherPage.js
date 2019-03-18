@@ -34,18 +34,14 @@ class CurrentWeatherPage extends React.Component {
       <div>
         <h1>Weather App</h1>
         <SearchForm onSubmit={this.onFormSubmit} />
-        {this.props.currentWeatherList.length > 0 ? (
+        {this.props.currentWeatherList.length > 0 && (
           <RecentSearch
             queryList={this.queryList()}
             onClick={this.onCityNameClick}
           />
-        ) : (
-          ""
         )}
-        {this.props.currentWeatherList.length > 0 ? (
+        {this.props.currentWeatherList.length > 0 && (
           <CityForecast {...this.getLastSearchForecast()} />
-        ) : (
-          ""
         )}
       </div>
     );
