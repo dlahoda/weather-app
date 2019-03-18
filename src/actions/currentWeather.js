@@ -13,7 +13,7 @@ export const addForecast = forecast => ({
 
 export const startAddForecast = (cityName = "Kiev") => {
   return (dispatch, getState) => {
-    const cityNamesList = getState().currentWeather.currentWeatherList.map(forecast => forecast.name);
+    const cityNamesList = getState().currentWeather.currentWeatherList.map(forecast => forecast.location.name);
     
     if (cityNamesList.indexOf(cityName) !== -1) {
       return dispatch(setCityForecast(cityName));
