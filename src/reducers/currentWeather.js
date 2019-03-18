@@ -10,7 +10,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         searchError: "",
-        lastSearch: action.forecast.name,
+        lastSearch: action.forecast.location.name,
         currentWeatherList: [
           ...state.currentWeatherList,
           action.forecast

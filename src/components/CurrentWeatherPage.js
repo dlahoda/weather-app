@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { startAddForecast, setCityForecast } from "../actions/currentWeather";
 import SearchForm from "../components/SearchForm";
@@ -15,17 +16,18 @@ class CurrentWeatherPage extends React.Component {
   };
 
   queryList = () => {
-    const forecastArray = this.props.currentWeatherList;
-    if (forecastArray < 5) {
-      return forecastArray.map(forecast => forecast.name);
+    const cityNamesArray = this.props.currentWeatherList.map(forecast => forecast.location.name);
+    
+    if (cityNamesArray < 5) {
+      return cityNamesArray;
     } else {
-      return forecastArray.slice(-5).map(forecast => forecast.name);
+      return cityNamesArray.slice(-5);
     }
   };
 
   getLastSearchForecast = () => {
     return this.props.currentWeatherList.filter(
-      forecast => forecast.name === this.props.lastSearch
+      forecast => forecast.location.name === this.props.lastSearch
     )[0];
   };
 
@@ -41,7 +43,10 @@ class CurrentWeatherPage extends React.Component {
           />
         )}
         {this.props.currentWeatherList.length > 0 && (
-          <CityForecast {...this.getLastSearchForecast()} />
+          <div>
+            <CityForecast {...this.getLastSearchForecast()} />
+            <Link to={`/forecast/${this.props.lastSearch}`} >Forecast</Link>
+          </div>
         )}
       </div>
     );

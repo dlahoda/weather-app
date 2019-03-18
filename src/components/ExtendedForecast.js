@@ -1,67 +1,41 @@
 import React from "react";
 import moment from "moment";
+import CityForecast from "./CityForecast";
 
 export default class ExtendedForecast extends React.Component {
-  createConditionsBlock = weatherArray => {
-    return weatherArray.map((weather, index) => (
-      <div key={index}>
-        <img src={`//openweathermap.org/img/w/${weather.icon}.png`} />
-        <span>{weather.main}</span>
-      </div>
-    ));
-  };
-  
-
-  createForecastRow = ({
-    dt: date,
-    weather,
-    main,
-    wind
-  }, index) => {
-    date = moment.unix(date).format("HH:mm, D.MM");
-    
+  createForecastItem = forecast => {
+    const dayText = moment.unix(forecast.date_epoch).format("ddd")
     return (
-      <tr key={index}>
-        <td>
-          <span>
-            <span>{date}</span>
-            <span>{this.createConditionsBlock(weather)}</span>
-          </span>
-        </td>
-        <td>
-          <span>{main.temp} &#8451;</span>
-        </td>
-        <td>
-          <span>{main.pressure} hPa</span>
-        </td>
-        <td>
-          <span>{wind.deg} {wind.speed} m/s</span>
-        </td>
-        <td>
-          <span>{main.humidity}%</span>
-        </td>
-      </tr>
+      <div>
+        <h3>{dayText}</h3>
+        <img src={forecast.day.condition.icon} />
+        <h3>{forecast.day.avgtemp_c} &#8451;</h3>
+        <h4>{forecast.day.mintemp_c}/{forecast.day.maxtemp_c} &#8451;</h4>
+        <h3>{forecast.day.totalprecip_mm} mm</h3>
+      </div>
+    );
+  };
+
+  createForecastBlock = forecastList => {
+    return (
+      <div>
+        {forecastList.map(dayForecast => this.createForecastItem(dayForecast))}
+      </div>
     );
   };
 
   createView = forecast => {
-    const forecastList = forecast.list;
-
-
-    return (
-      <table>
-        <tbody>
-          {forecastList.map((forecast, index) => this.createForecastRow(forecast, index))}
-        </tbody>
-      </table>
-    )
-  };
-
-  render() {
     return (
       <div>
-        {this.createView(this.props.forecast)}
+        <CityForecast
+          {...{ location: forecast.location, current: forecast.current }}
+        />
+        {this.createForecastBlock(forecast.forecast.forecastday)}
       </div>
     );
   };
-};
+
+  render() {
+    return <div>{this.createView(this.props.forecast)}</div>;
+  }
+}

@@ -23,7 +23,7 @@ export class ForecastPage extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   extendedForecast: state.forecastList.find(
-    forecast => forecast.city.name === props.match.params.city
+    forecastDay => forecastDay.location.name === props.match.params.city
   )
 });
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCurrentWeatherUrl } from "../api/openweathermap";
+import { getCurrentWeatherUrl } from "../api/apixu";
 
 const errorInterceptorInstance = axios.create();
 errorInterceptorInstance.interceptors.response.use(null, error => {
@@ -14,6 +14,7 @@ export const addForecast = forecast => ({
 export const startAddForecast = (cityName = "Kiev") => {
   return (dispatch, getState) => {
     const cityNamesList = getState().currentWeather.currentWeatherList.map(forecast => forecast.name);
+    
     if (cityNamesList.indexOf(cityName) !== -1) {
       return dispatch(setCityForecast(cityName));
     }
