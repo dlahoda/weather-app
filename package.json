@@ -7,13 +7,13 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "dev": "webpack-dev-server --open",
-    "start": "node server/server.js",
+    "start": "serve -s public",
     "heroku-postbuild": "npm run build:prod"
   },
   "author": "Denys Lahoda",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "serve": "^10.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
