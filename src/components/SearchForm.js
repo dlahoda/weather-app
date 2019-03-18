@@ -7,7 +7,7 @@ export class SearchForm extends React.Component {
     this.state = {
       cityName: ""
     };
-  };
+  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -19,28 +19,32 @@ export class SearchForm extends React.Component {
     const cityName = e.target.value;
     this.setState(() => ({ cityName }));
   };
-  
+
   render() {
     return (
-      <form className="search-form" onSubmit={this.onSubmit}>
-        <input 
-          className="search-form__input"
-          type="text"
-          autoFocus
-          placeholder="Enter city name"
-          value={this.state.cityName}
-          onChange={this.onSearchValueChange}
-        />
-        <input 
-          className="search-form__submit-btn"
-          type="submit"
-          value="Search"
-        />
-        {this.props.searchError && <p className="form__error">{this.props.searchError}</p>}
+      <form className="search-form content-container" onSubmit={this.onSubmit}>
+        <div className="search-form__box">
+          <input
+            className="search-form__input"
+            type="text"
+            autoFocus
+            placeholder="Enter city name"
+            value={this.state.cityName}
+            onChange={this.onSearchValueChange}
+          />
+          <input
+            className="search-form__submit-btn"
+            type="submit"
+            value=""
+          />
+        </div>
+        {this.props.searchError && (
+          <p className="search-form__error">{this.props.searchError}</p>
+        )}
       </form>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   searchError: state.currentWeather.searchError

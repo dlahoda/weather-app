@@ -27,27 +27,29 @@ class CurrentWeatherPage extends React.Component {
 
   getLastSearchForecast = () => {
     return this.props.currentWeatherList.filter(
-      forecast => forecast.location.name === this.props.lastSearch
+      forecast => forecast.location.name.toLowerCase() === this.props.lastSearch.toLowerCase()
     )[0];
   };
 
   render() {
     return (
-      <div>
-        <h1>Weather App</h1>
-        <SearchForm onSubmit={this.onFormSubmit} />
-        {this.props.currentWeatherList.length > 0 && (
-          <RecentSearch
-            queryList={this.queryList()}
-            onClick={this.onCityNameClick}
-          />
-        )}
-        {this.props.currentWeatherList.length > 0 && (
-          <div>
-            <CityForecast {...this.getLastSearchForecast()} />
-            <Link to={`/forecast/${this.props.lastSearch}`} >Forecast</Link>
-          </div>
-        )}
+      <div className="app-container">
+        <div className="current-weather">
+          <h2 className="current-weather__title content-container">Weather App</h2>
+          <SearchForm onSubmit={this.onFormSubmit} />
+          {this.props.currentWeatherList.length > 0 && (
+            <RecentSearch
+              queryList={this.queryList()}
+              onClick={this.onCityNameClick}
+            />
+          )}
+          {this.props.currentWeatherList.length > 0 && (
+            <div>
+              <CityForecast {...this.getLastSearchForecast()} />
+              <Link className="link" to={`/forecast/${this.props.lastSearch}`} >Forecast &#10095;</Link>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

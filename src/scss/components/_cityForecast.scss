@@ -1,0 +1,53 @@
+.city-forecast {
+  text-align: center;
+
+  &__city-name {
+    margin: 0;
+    text-transform: uppercase;
+  }
+  &__temperature {
+    margin: 0;
+    margin-left: .3rem;
+    font-size: 8rem;
+    line-height: .9;
+    margin: 0;
+  }
+}
+
+.condition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__text {
+    font-size: 2rem;
+  }
+}
+
+.data {
+  display: flex;
+  justify-content: space-around;
+  font-size: $fz-xs;
+  width: 80%;
+  margin: 2rem auto 2rem;
+
+  &__box {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // border: 2px solid white;
+    border-radius: .5rem;
+    height: 9rem;
+    width: 9rem;
+    // box-shadow: 3px 5px 10px 1px rgba(0, 0, 0, 0.15);
+  }
+  &__img{
+    height: 32px;
+    width: 32px;
+  }
+  &__value {
+    font-size: $fz-s;
+  }
+}

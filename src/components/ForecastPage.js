@@ -10,12 +10,13 @@ export class ForecastPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Weather and forecast in {this.props.match.params.city}</h2>
+      <div className="app-container">
+        <div className="forecast-page">
         {this.props.extendedForecast && (
           <ExtendedForecast forecast={this.props.extendedForecast} />
-        )}
-        <a onClick={this.props.history.goBack}>Go back</a>
+          )}
+          <a className="link" onClick={this.props.history.goBack}>Go back</a>
+        </div>
       </div>
     );
   }

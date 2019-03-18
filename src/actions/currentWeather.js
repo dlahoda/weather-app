@@ -11,11 +11,11 @@ export const addForecast = forecast => ({
   forecast
 });
 
-export const startAddForecast = (cityName = "Kiev") => {
+export const startAddForecast = (cityName) => {
   return (dispatch, getState) => {
-    const cityNamesList = getState().currentWeather.currentWeatherList.map(forecast => forecast.location.name);
+    const cityNamesList = getState().currentWeather.currentWeatherList.map(forecast => forecast.location.name.toLowerCase());
     
-    if (cityNamesList.indexOf(cityName) !== -1) {
+    if (cityNamesList.indexOf(cityName.toLowerCase()) !== -1) {
       return dispatch(setCityForecast(cityName));
     }
 

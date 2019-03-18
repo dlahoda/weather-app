@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import "normalize.css";
+import "./scss/styles.scss";
 import currentWeatherReducer from "./reducers/currentWeather";
 import extendedForecastReducer from "./reducers/forecast";
 import AppRouter from "./routers/AppRouter";

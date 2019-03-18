@@ -6,11 +6,11 @@ export const getExtendedForecast = forecast => ({
   forecast
 });
 
-export const startGetExtendedForecast = (cityName = "Kiev") => {
+export const startGetExtendedForecast = (cityName) => {
   return (dispatch, getState) => {
-    const cityNamesList = getState().forecastList.map(forecast => forecast.location.name);
+    const cityNamesList = getState().forecastList.map(forecast => forecast.location.name.toLowerCase());
 
-    if (cityNamesList.indexOf(cityName) === -1) {
+    if (cityNamesList.indexOf(cityName.toLowerCase()) === -1) {
       const url = getForecastUrl(cityName);
       
       return axios

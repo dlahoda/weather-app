@@ -6,7 +6,7 @@ import NotFoundPage from "../components/NotFoundPage";
 
 const AppRouter = () => (
   <BrowserRouter>
-    <div>
+    <div className="app-wrapper">
       <Switch>
         <Route path="/" component={CurrentWeatherPage} exact />
         <Route path="/forecast/:city" component={ForecastPage} />
