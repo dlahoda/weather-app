@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCurrentWeatherUrl } from "../api/apixu";
+import { getCurrentWeatherUrl, processError } from "../api/apixu";
 
 const errorInterceptorInstance = axios.create();
 errorInterceptorInstance.interceptors.response.use(null, error => {
@@ -32,7 +32,10 @@ export const startAddForecast = (cityName) => {
         }
       })
       .catch(error => {
-        dispatch(searchError(error.message));
+        const errorData = error.response.data.error;
+        const apiError = processError(errorData.code);
+        const errorMessage = apiError ? apiError.message : error.message;
+        dispatch(searchError(errorMessage));
       });
   };
 };
