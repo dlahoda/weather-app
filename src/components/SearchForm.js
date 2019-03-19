@@ -32,6 +32,7 @@ export class SearchForm extends React.Component {
             className="search-form__input"
             type="text"
             autoFocus
+            autoComplete="off"
             placeholder="Enter city name"
             value={this.state.cityName}
             onChange={this.onSearchValueChange}
