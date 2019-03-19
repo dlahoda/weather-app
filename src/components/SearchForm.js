@@ -22,7 +22,11 @@ export class SearchForm extends React.Component {
 
   render() {
     return (
-      <form className="search-form content-container" onSubmit={this.onSubmit}>
+      <form
+        className="search-form content-container"
+        autoComplete="off"
+        onSubmit={this.onSubmit}
+      >
         <div className="search-form__box">
           <input
             className="search-form__input"
@@ -32,11 +36,7 @@ export class SearchForm extends React.Component {
             value={this.state.cityName}
             onChange={this.onSearchValueChange}
           />
-          <input
-            className="search-form__submit-btn"
-            type="submit"
-            value=""
-          />
+          <input className="search-form__submit-btn" type="submit" value="" />
         </div>
         {this.props.searchError && (
           <p className="search-form__error">{this.props.searchError}</p>
